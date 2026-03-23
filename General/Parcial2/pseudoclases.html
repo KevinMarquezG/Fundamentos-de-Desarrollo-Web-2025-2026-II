@@ -8,6 +8,9 @@
         div{
             width: 250px;
             height: 250px;
+            transition-property: width;
+            transition-duration: 3s;
+            transition-delay: 2s;;
             background-color: blue;
         }
 
@@ -24,7 +27,12 @@
 
         p:hover{
             background-color: aquamarine;
-            font-size: large;
+            font-size: larger;
+        }
+
+        input:focus{
+            font-size: larger;
+            color:red;
         }
     </style>
 </head>
@@ -38,5 +46,11 @@
         officia eligendi cupiditate dignissimos nesciunt eum accusantium deleniti repellendus numquam, ratione reiciendis, 
         quibusdam placeat!
     </p>
+
+    <input type="text">
+    <input type="text">
+    <input type="text">
+
+    <button>Click</button>
 </body>
 </html>
