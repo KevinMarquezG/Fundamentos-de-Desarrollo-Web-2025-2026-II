@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        margin: 0;
+    }
+    .contenedor{
+        width: 100vw;
+        background-color: aqua;
+    }
+
+    .elemento{
+        height: 200px;
+        float: left;
+    }
+
+    .elemento1{
+        background-color: blue;
+    }
+
+    .elemento2{
+        background-color: bisque;
+    }
+
+    .elemento3{
+        background-color: blueviolet;
+    }
+    @media(376px <= width <= 768px){
+        .elemento1{
+            width: 50%;
+            background-color: blue;
+        }
+
+        .elemento2{
+            width: 50%;
+        }
+
+        .elemento3{
+            width: 100%;
+        }
+    }
+
+    @media (width <= 750px){
+        .elemento1{
+            background-color: blue;
+        }
+
+        .elemento2{
+            background-color: bisque;
+        }
+
+        .elemento3{
+            background-color: blueviolet;
+        }
+    }
+</style>
+<body>
+    <div class="contenedor">
+        <div class="elemento elemento1"></div>
+        <div class="elemento elemento2"></div>
+        <div class="elemento elemento3"></div>
+    </div>
+</body>
+</html>

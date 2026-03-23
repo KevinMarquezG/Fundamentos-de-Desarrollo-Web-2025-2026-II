@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio de Media Querys</title>
+    <style>
+        .elemento1, .elemento2, .elemento3 {
+            float: left;
+            box-sizing: border-box;
+        }
+        
+        @media (width <= 600px){
+            .elemento1, .elemento2, .elemento3{
+                width:100%;
+            }
+        }
+
+        @media (600px < width < 1200px) {
+            .elemento1, .elemento2, .elemento3 {
+                width: 50%;
+            }
+        }
+
+        @media (width >= 1200px) {
+            .elemento1, .elemento2 {
+                width: 33%;
+            }
+            .elemento3 {
+                width: 34%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Curriculum Vitae de Bruce Wayne</h1>
+
+    <div class="elemento1">
+        <h2>Datos personales</h2>
+        <ul>
+            <li>Nombre completo: <strong>Bruce Wayne</strong></li>
+            <li>Fecha de nacimiento: <strong>1/5/1939</strong></li>
+            <li>Lugar de nacimiento: <strong>Gotham City</strong></li>
+        </ul>
+    </div>
+
+    <div class="elemento2">
+        <h2>Formación académica</h2>
+        <ul>
+            <li>1956-1961: <strong>Universidad del Espantapájaros</strong></li>
+            <li>1952-1956: <strong>Instituto de Dos Caras</strong></li>
+            <li>1944-1952: <strong>Escuela Primaria del Joker</strong></li>
+        </ul>
+    </div>
+
+    <div class="elemento3">
+    <h2>Experiencia laboral</h2>
+        <ul>
+            <li>1975-1985: <strong>En el paro</strong></li>
+            <li>1965-1975: <strong>Cazavillanos y demás chusma</strong></li>
+            <li>1962-1965: <strong>Aprendiz de superhéroe</strong></li>
+        </ul>
+    </div>
+</body>
+</html>
