@@ -1,6 +1,5 @@
 .main-container {
     width: 100%;
-    /* 100vh menos la altura del navbar para que no haya scroll */
     height: calc(100vh - 60px); 
     background-image: url('./imagenes/fondo_grounded.jpg');
     background-size: cover;  
@@ -11,93 +10,256 @@
     align-items: center;
     position: relative;
 }
-
-.image-container{
-    position: absolute;
-    top: -75px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
+/* Configuración General */
 body, html {
     margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
     overflow-x: hidden; 
+    font-family: Arial, sans-serif;
+}
+
+p{
+    color: #000000;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    font-size: larger;
+}
+
+.text-container {
+    margin-top: 100px;
+    padding: 30px;
+    text-align: center;
 }
 
 .card {
     width: 90%; /* Cambiado de 1300px a 90% para que no se desborde en pantallas chicas */
     max-width: 1300px; 
     height: 80vh; /* Ajustado para que quepa bien */
-    background-color: #c2bb60;
+    background-color: #ebe596;
     border-radius: 25px;
     position: relative;
     box-shadow: 0 15px 30px rgba(0,0,0,0.3);
 }
-
+/* Menú Fijo y Fondo Verde */
 .navbar {
-display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #3e7b3e;
+    background-color: #0d3f0f; /* Verde */
     color: white;
-    padding: 10px 20px;
-    font-family: Arial, sans-serif;
-    height: 60px; /* Altura fija para el cálculo */
-    box-sizing: border-box;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
-.nav-left, .nav-right {
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Lado Izquierdo */
+.nav-left {
     display: flex;
     align-items: center;
     gap: 20px;
 }
 
-.brand {
-    font-weight: bold;
-    font-size: 1.2rem;
+.logo {
+  height: 40px;
 }
 
-.nav-links a {
+.nav-links {
+  display: flex;
+  gap: 15px;
+}
+
+/* Submenús (Dropdown) */
+.dropdown {
+    position: relative;
+}
+
+.dropdown a {
     color: white;
     text-decoration: none;
-    font-size: 0.9rem;
+    padding: 10px;
+}
+
+.submenu {
+    display: none;
+    position: absolute;
+    
+    /* 1. POSICIÓN: Aumenta el top para que baje más (ejemplo: 120%) */
+    top: 130%; 
+    left: 0;
+    
+    /* 2. COLOR: Un verde más apagado/oscuro que el principal (#2e7d32) */
+    background-color: #3bb145; 
+    
+    list-style: none;
+    padding: 10px 0;
+    margin: 0;
+    min-width: 150px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    border-radius: 4px; /* Opcional: para redondear las esquinas */
+}
+
+/* IMPORTANTE: Cambia el color del texto de los enlaces del submenú 
+   ya que el fondo ahora es oscuro */
+.submenu li a {
+    color: #e0e0e0; /* Un gris muy claro o blanco */
+    display: block;
+    padding: 8px 15px;
+}
+
+.submenu li a:hover {
+  background-color: #84da8b; /* Un verde ligeramente más claro al pasar el mouse */
+}
+
+.dropdown:hover .submenu {
+    display: block;
+}
+
+.dropdown:hover > .submenu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Color verde apagado para los submenús */
+.submenu, .second-submenu {
+position: absolute;
+    background-color: #1b4d1f; /* Verde apagado */
+    list-style: none;
+    padding: 10px 0;
+    margin: 0;
+    min-width: 180px;
+    z-index: 100;
+
+    /* ESTADO INICIAL: Oculto y transparente */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px); /* Pequeño movimiento hacia arriba al aparecer */
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+}
+
+/* El elemento li padre debe ser relativo para que el hijo se posicione respecto a él */
+.has-second-submenu {
+  position: relative;
+}
+
+/* Posicionamiento del SEGUNDO submenú a la derecha */
+.second-submenu {
+    top: 0;
+    left: 100%; /* A la derecha */
+    transform: translateX(-10px); /* Movimiento lateral al aparecer */
+}
+
+/* MOSTRAR el segundo submenú al hacer hover */
+.has-second-submenu:hover > .second-submenu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+}
+
+/* Estilo de los enlaces en ambos submenús */
+.submenu li a, .second-submenu li a {
+    color: #e0e0e0;
+    padding: 10px 20px;
+    display: block;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background 0.2s;
+}
+
+.submenu li a:hover, .second-submenu li a:hover {
+    background-color: #265d2b; /* Verde ligeramente más claro */
+    color: white;
+}
+
+/* Lado Derecho: Buscador y Botones */
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-form {
+  display: flex;
+}
+
+.search-form input {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px 0 0 4px;
+  outline: none;
+}
+
+.btn-search {
+    border: none;
+    background: #eee;
+    padding: 5px 10px;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.auth-buttons button {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
     font-weight: bold;
 }
 
-/* Estilo del buscador */
-.search-box {
-    background-color: white;
-    display: flex;
-    align-items: center;
-    padding: 5px 15px;
-    border-radius: 4px;
-    width: 300px;
+.btn-login {
+    background-color: transparent;
+    color: white;
+    border: 1px solid white !important;
 }
 
-.search-box input {
-    border: none;
-    outline: none;
-    padding-left: 10px;
-    width: 100%;
-}
-
-.search-icon {
+.btn-register {
+    background-color: #ffd600;
     color: #333;
 }
 
-/* Iconos de la derecha */
-.user-actions {
-    display: flex;
-    gap: 15px;
-    align-items: center;
-    font-size: 0.9rem;
-    font-weight: bold;
+.arrow, .arrow-side {
+    display: inline-block; /* Necesario para que puedan rotar */
+    margin-left: 8px;
+    transition: transform 0.3s ease; /* Duración del giro */
+    font-size: 0.8em;
 }
 
-.icon {
-    font-size: 1.2rem;
-    cursor: pointer;
+/* --- Giro de la flecha principal (hacia abajo) --- */
+.dropdown:hover > a .arrow {
+    transform: rotate(180deg);
+}
+
+/* --- Giro de la flecha lateral (hacia un lado) --- */
+.has-second-submenu:hover > a .arrow-side {
+    transform: rotate(90deg); /* Apunta hacia abajo al abrirse a la derecha */
+    color: #ffffff; /* Opcional: cambia el color de la flecha al abrirse */
+}
+
+/* --- Ajuste visual para los links con flecha lateral --- */
+.has-second-submenu > a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+/* Responsividad */
+@media (max-width: 768px) {
+  .nav-container {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .nav-links {
+    font-size: 14px;
+  }
 }

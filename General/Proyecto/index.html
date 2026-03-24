@@ -3,36 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fandom Grounded Wiki</title>
     <link rel="stylesheet" href="./style.css">
+    <title>Grounded Wiki | Fandom</title>
 </head>
-<body>                                                                                                                                  
+<body>
     <header class="navbar">
-        <div class="nav-left">
-            <span class="brand">Grounded Wiki</span>
-            <nav class="nav-links">
-                <a href="#">EXPLORE ▼</a>
-                <a href="#">GROUNDED ▼</a>
-                <a href="#">GROUNDED 2 ▼</a>
-            </nav>
-        </div>
+        <div class="nav-container">
+            <div class="nav-left">
+                <img src="./imagenes/GroundedLogo-removeFondo.png" alt="Logo" class="logo">
+                
+                <nav class="nav-links">
+                    <div class="dropdown">
+                        <a href="#">Explorar▾</a>
+                        <ul class="submenu">
+                            <li><a href="#" data-seccion="inicio">Inicio</a></li>
+                            <li><a href="#">Comunidad</a></li>
+                            <li class="has-second-submenu">
+                                <a href="#">Mapas▸</a>
+                                <ul class="second-submenu">
+                                    <li><a href="#">Jardín Superior</a></li>
+                                    <li><a href="#">El Estanque</a></li>
+                                    <li><a href="#">La Charca</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div> 
 
-        <div class="nav-right">
-            <div class="search-box">
-                <span class="search-icon">🔍</span>
-                <input type="text" placeholder="Search">
+                    <div class="dropdown">
+                        <a href="#">Grounded ▾</a>
+                        <ul class="submenu">
+                            <li class="has-second-submenu">
+                                <a href="#">Supervivencia<span class="arrow-side">▸</span></a>
+                                <ul class="second-submenu">
+                                    <li><a href="#" data-seccion="armadura">Armaduras</a></li>
+                                    <li><a href="#" data-seccion="armas">Armas</a></li>
+                                    <li><a href="#">Recetas</a></li>
+                                    <li><a href="#" data-seccion="herramientas">Herramientas</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Mejoras</a></li>
+                            <li><a href="#">Misiones</a></li>
+                            <li><a href="#">Coleccionables</a></li>
+                        </ul>
+                    </div>
+                </nav>
             </div>
-            <div class="user-actions">
-                <span class="icon">💬</span>
-                <span class="icon">🌙</span>
-                <span class="icon-user">👤 SIGN IN</span>
+
+            <div class="nav-right">
+                <form class="search-form">
+                    <input type="text" placeholder="Buscar...">
+                    <button type="submit" class="btn-search">🔍</button>
+                </form>
+                <div class="auth-buttons">
+                    <button class="btn-login">Iniciar Sesión</button>
+                    <button class="btn-register">Registrarse</button>
+                </div>
             </div>
         </div>
     </header>
 
     <div class="main-container">
         <div class="card">
+            <div class="text-container">
+                <h1>¡Bienvenido a Grounded Wiki!</h1>
+                <p>Una wiki para la franquicia Grounded de Obsidian Entertainment. Encogido al tamaño de una hormiga, debes sobrevivir 
+                    al hermoso pero peligroso micromundo. ¡Progresa a través de misiones basadas en historias, explora el mundo del juego 
+                    intrincadamente detallado, busca recursos que salven vidas y defiéndete de una gran cantidad de criaturas impredecibles!
+                </p>
             </div>
+        </div>
     </div>
+    <script src="./main.js"></script>
 </body>
 </html>
