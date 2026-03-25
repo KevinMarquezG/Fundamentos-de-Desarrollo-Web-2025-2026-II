@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen 2 - Buscador Responsivo</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px;
+            background-color: #f4f7f6;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        .search-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            max-width: 500px;
+            padding: 12px 20px;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus {
+            border-color: #3498db;
+        }
+
+        .grid-container {
+            display: grid;
+            gap: 20px;
+            /* Crea 3 columnas iguales por defecto */
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+            border-left: 5px solid #3498db;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        @media (max-width: 900px) {
+            .grid-container {
+                grid-template-columns: repeat(2, 1fr); /* 2 columnas en tablets */
+            }
+        }
+
+        @media (max-width: 600px) {
+            .grid-container {
+                grid-template-columns: 1fr; /* 1 columna en móviles */
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Buscador de Elementos</h1>
+
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Escribe para buscar..." onkeyup="filterCards()">
+    </div>
+
+    <div class="grid-container" id="grid">
+        <div class="card">Ejemplo 1</div>
+        <div class="card">Hollow Knigth</div>
+        <div class="card">Hollow Knigth Silksong</div>
+        <div class="card">Halo Reach</div>
+        <div class="card">Halo: INFINITE</div>
+        <div class="card">Need for Speed Carbono</div>
+        <div class="card">Need for Speed Heat</div>
+    </div>
+
+    <script>
+        function filterCards() {
+            const input = document.getElementById('searchInput');
+            const filter = input.value.toLowerCase();
+            const grid = document.getElementById('grid');
+            const cards = grid.getElementsByClassName('card');
+
+            for (let i = 0; i < cards.length; i++) {
+                const textValue = cards[i].textContent || cards[i].innerText;
+                
+                if (textValue.toLowerCase().indexOf(filter) > -1) {
+                    cards[i].classList.remove('hidden');
+                } else {
+                    cards[i].classList.add('hidden');
+                }
+            }
+        }
+    </script>
+</body>
+</html>

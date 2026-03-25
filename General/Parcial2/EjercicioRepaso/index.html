@@ -1,11 +1,139 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ejercicio Repaso</title>
+    <title>Lista de Tareas Dinámica</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 50px;
+            background-color: #f4f4f9;
+        }
+
+        .input-container {
+            margin-bottom: 20px;
+        }
+
+        input {
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        #btn-agregar {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        #btn-agregar:hover { background-color: #45a049; }
+
+        #lista-tareas {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 300px;
+        }
+
+        .tarea-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            padding: 5px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .btn-tarea {
+            flex-grow: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #e7e7e7;
+            cursor: pointer;
+            text-align: left;
+            transition: 0.3s;
+            margin-right: 5px;
+        }
+
+        .completada {
+            background-color: #81c784 !important;
+            color: white;
+            text-decoration: line-through;
+        }
+
+        .btn-eliminar {
+            background-color: #ff5252;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn-eliminar:hover { background-color: #d32f2f; }
+    </style>
 </head>
 <body>
-    <h1>Tareas</h1>
+
+    <h1>Mis Tareas</h1>
+
+    <div class="input-container">
+        <input type="text" id="tareaInput" placeholder="Escribe una Tarea">
+        <button id="btn-agregar">Agregar</button>
+    </div>
+
+    <div id="lista-tareas">
+        </div>
+
+    <script>
+        const input = document.getElementById('tareaInput');
+        const botonAgregar = document.getElementById('btn-agregar');
+        const listaTareas = document.getElementById('lista-tareas');
+
+        botonAgregar.addEventListener('click', () => {
+            const textoTarea = input.value.trim();
+
+            if (textoTarea !== "") {
+                const contenedor = document.createElement('div');
+                contenedor.className = 'tarea-item';
+
+                const nuevoBoton = document.createElement('button');
+                nuevoBoton.innerText = textoTarea;
+                nuevoBoton.className = 'btn-tarea';
+
+                nuevoBoton.onclick = function() {
+                    this.classList.toggle('completada');
+                };
+
+                const btnEliminar = document.createElement('button');
+                btnEliminar.innerText = '✕';
+                btnEliminar.className = 'btn-eliminar';
+
+                btnEliminar.onclick = function() {
+                    contenedor.remove();
+                };
+
+                contenedor.appendChild(nuevoBoton);
+                contenedor.appendChild(btnEliminar);
+                listaTareas.appendChild(contenedor);
+
+                input.value = "";
+                input.focus();
+            } else {
+                alert("Por favor, escribe algo.");
+            }
+        });
+    </script>
 </body>
 </html>
