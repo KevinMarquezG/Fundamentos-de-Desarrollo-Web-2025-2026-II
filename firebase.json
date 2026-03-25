@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "General",
+    "public": "General/Parcial2/examen2",
     "ignore": [
       "firebase.json",
       "**/.*",
