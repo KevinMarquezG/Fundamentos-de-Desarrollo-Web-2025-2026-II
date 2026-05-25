@@ -25,11 +25,16 @@ p{
 }
 
 .text-container {
-    margin-top: 100px;
-    padding: 30px;
+    margin-top: 0; 
+    padding: 40px; /* Espaciado interno uniforme */
     text-align: center;
+    width: 100%;
+    box-sizing: border-box;
 }
 
+.text-container *:last-child {
+    margin-bottom: 0;
+}
 .card {
     width: 90%; /* Cambiado de 1300px a 90% para que no se desborde en pantallas chicas */
     max-width: 1300px; 
@@ -38,7 +43,35 @@ p{
     border-radius: 25px;
     position: relative;
     box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+
+    overflow-y: auto; 
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; 
 }
+
+/* OPCIONAL: Personalizar la barra de scroll para que combine con el juego */
+.card::-webkit-scrollbar {
+    width: 10px;
+}
+.card::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 0 25px 25px 0;
+}
+.card::-webkit-scrollbar-thumb {
+    background: #0d3f0f; /* Verde como la navbar */
+    border-radius: 10px;
+}
+
+.header-image {
+    max-width: 300px; /* Ajusta el tamaño a tu gusto */
+    height: auto;
+    margin-bottom: 10px; /* Espacio entre la imagen y el H1 */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 /* Menú Fijo y Fondo Verde */
 .navbar {
     background-color: #0d3f0f; /* Verde */
@@ -76,106 +109,95 @@ p{
 }
 
 /* Submenús (Dropdown) */
+/* --- NAVEGACIÓN LIMPIA Y SIN ESPACIOS --- */
+
 .dropdown {
     position: relative;
 }
 
-.dropdown a {
+.dropdown > a {
     color: white;
     text-decoration: none;
-    padding: 10px;
+    padding: 15px 10px;
+    display: inline-block;
 }
 
-.submenu {
-    display: none;
-    position: absolute;
-    
-    /* 1. POSICIÓN: Aumenta el top para que baje más (ejemplo: 120%) */
-    top: 130%; 
-    left: 0;
-    
-    /* 2. COLOR: Un verde más apagado/oscuro que el principal (#2e7d32) */
-    background-color: #3bb145; 
-    
-    list-style: none;
-    padding: 10px 0;
-    margin: 0;
-    min-width: 150px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-    border-radius: 4px; /* Opcional: para redondear las esquinas */
-}
-
-/* IMPORTANTE: Cambia el color del texto de los enlaces del submenú 
-   ya que el fondo ahora es oscuro */
-.submenu li a {
-    color: #e0e0e0; /* Un gris muy claro o blanco */
-    display: block;
-    padding: 8px 15px;
-}
-
-.submenu li a:hover {
-  background-color: #84da8b; /* Un verde ligeramente más claro al pasar el mouse */
-}
-
-.dropdown:hover .submenu {
-    display: block;
-}
-
-.dropdown:hover > .submenu {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
-
-/* Color verde apagado para los submenús */
+/* Regla base para ambos submenús */
 .submenu, .second-submenu {
-position: absolute;
-    background-color: #1b4d1f; /* Verde apagado */
+    position: absolute;
+    background-color: #1b4d1f; 
     list-style: none;
-    padding: 10px 0;
     margin: 0;
-    min-width: 180px;
+    padding: 0; /* Cambiado de 5px a 0 para control total */
+    min-width: 200px;
     z-index: 100;
-
-    /* ESTADO INICIAL: Oculto y transparente */
-    opacity: 0;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    border-radius: 4px;
+    
+    /* Quitamos el Flexbox aquí, usaremos el flujo normal de bloque */
+    display: block; 
     visibility: hidden;
-    transform: translateY(10px); /* Pequeño movimiento hacia arriba al aparecer */
-    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
 }
 
-/* El elemento li padre debe ser relativo para que el hijo se posicione respecto a él */
-.has-second-submenu {
-  position: relative;
+/* Submenú nivel 1 (baja del menú principal) */
+.submenu {
+    top: 100%;
+    left: 0;
 }
 
-/* Posicionamiento del SEGUNDO submenú a la derecha */
+/* Submenú nivel 2 (abre a la derecha) */
 .second-submenu {
     top: 0;
-    left: 100%; /* A la derecha */
-    transform: translateX(-10px); /* Movimiento lateral al aparecer */
+    left: 100%;
+    transform: translateX(10px); /* Aparece desde la derecha */
 }
 
-/* MOSTRAR el segundo submenú al hacer hover */
+/* Mostrar al hacer hover */
+.dropdown:hover > .submenu,
 .has-second-submenu:hover > .second-submenu {
-    opacity: 1;
     visibility: visible;
-    transform: translateX(0);
+    opacity: 1;
+    transform: translate(0);
+    pointer-events: auto;
 }
 
-/* Estilo de los enlaces en ambos submenús */
+/* Estilo de los items y enlaces */
+.submenu li, .second-submenu li {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    line-height: normal; /* Evita que herede alturas de línea del body */
+}
 .submenu li a, .second-submenu li a {
     color: #e0e0e0;
-    padding: 10px 20px;
-    display: block;
     text-decoration: none;
+    padding: 12px 20px; /* Controlamos el espacio aquí */
+    display: block;     /* Ocupa todo el ancho */
     font-size: 14px;
-    transition: background 0.2s;
+    box-sizing: border-box;
+    border-bottom: 1px solid rgba(255,255,255,0.05); /* Opcional: línea divisoria muy sutil */
 }
 
-.submenu li a:hover, .second-submenu li a:hover {
-    background-color: #265d2b; /* Verde ligeramente más claro */
-    color: white;
+.submenu li:last-child a, .second-submenu li:last-child a {
+    border-bottom: none;
+}
+
+/* Flechas */
+.arrow, .arrow-side {
+    font-size: 0.7em;
+    transition: transform 0.3s;
+}
+
+.dropdown:hover > a .arrow {
+    transform: rotate(180deg);
+}
+
+.has-second-submenu:hover > a .arrow-side {
+    transform: rotate(90deg);
 }
 
 /* Lado Derecho: Buscador y Botones */
@@ -262,4 +284,167 @@ position: absolute;
   .nav-links {
     font-size: 14px;
   }
+}
+
+/* Estilos para la cuadrícula de la Wiki */
+.wiki-grid {
+    width: 100%;
+    margin-top: 30px;
+    border-collapse: collapse; /* Elimina espacio entre bordes */
+    border: none;              /* Quita el borde exterior */
+}
+
+.wiki-grid td {
+    padding: 20px;
+    text-align: center;
+    vertical-align: top;
+    border: none;              /* Quita las líneas internas (celdas) */
+}
+
+.wiki-grid a {
+    text-decoration: none;     /* Quita el subrayado de los links */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.2s ease; /* Efecto suave al pasar el mouse */
+}
+
+.wiki-grid a:hover {
+    transform: scale(1.1);     /* Crece un poquito al pasar el mouse */
+}
+
+.wiki-grid img {
+    width: 100px;              /* Ajusta según el tamaño de tus iconos */
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.wiki-grid span {
+    color: #a04a1e;            /* Color café/naranja similar al de Grounded */
+    font-weight: bold;
+    font-size: 1.1rem;
+    text-transform: capitalize;
+}
+
+/* Estilos para la Tabla de Armas / Stats */
+.arma-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #fdf6e3; /* Fondo crema claro de la wiki */
+    color: #333;
+    font-size: 0.9rem;
+    border: 1px solid #c5c1a5;
+}
+
+.arma-table thead th {
+    background-color: #4e8c56; /* Verde de la imagen */
+    color: white;
+    padding: 10px;
+    border: 1px solid #3d6e43;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.arma-table td {
+    padding: 15px;
+    border: 1px solid #c5c1a5;
+    vertical-align: middle;
+    text-align: center;
+}
+
+/* Estilos específicos para celdas de texto */
+.arma-table .nombre-arma {
+    color: #a04a1e;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.arma-table .info-text {
+    font-style: italic;
+    text-align: left;
+    max-width: 250px;
+}
+
+.tabla-img-arma {
+    width: 60px;
+    height: auto;
+}
+
+/* Hover en las filas */
+.arma-table tbody tr:hover {
+    background-color: #f2ebd3;
+}
+
+/*Registro
+/* Estilos para el Formulario de Registro */
+.form-container {
+    max-width: 400px;
+    margin: 30px auto 0 auto;
+    background: rgba(255, 255, 255, 0.5); /* Fondo semitransparente sutil */
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    font-weight: bold;
+    color: #0d3f0f;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+}
+
+.input-group input {
+    padding: 10px;
+    border: 1px solid #c5c1a5;
+    border-radius: 6px;
+    background-color: #fdf6e3;
+    font-size: 1rem;
+    outline: none;
+}
+
+.input-group input:focus {
+    border-color: #0d3f0f;
+    box-shadow: 0 0 5px rgba(13, 63, 15, 0.3);
+}
+
+#btn-registrar-submit {
+    width: 100%;
+    padding: 12px;
+    background-color: #0d3f0f;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+#btn-registrar-submit:hover:not(:disabled) {
+    background-color: #1b4d1f;
+}
+
+#btn-registrar-submit:disabled {
+    background-color: #a5c3a7;
+    cursor: not-allowed;
+}
+
+/* Alertas de error si se repite usuario/correo */
+.alerta-error {
+    background-color: #ffcccc;
+    color: #990000;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    border: 1px solid #ff9999;
 }

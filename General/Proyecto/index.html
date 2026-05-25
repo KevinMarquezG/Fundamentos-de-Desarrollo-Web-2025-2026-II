@@ -14,12 +14,15 @@
                 
                 <nav class="nav-links">
                     <div class="dropdown">
+                        <a href="#" data-seccion="inicio">Inicio</a>
+                    </div>
+                    <div class="dropdown">
                         <a href="#">Explorar▾</a>
                         <ul class="submenu">
                             <li><a href="#" data-seccion="inicio">Inicio</a></li>
                             <li><a href="#">Comunidad</a></li>
                             <li class="has-second-submenu">
-                                <a href="#">Mapas▸</a>
+                                <a href="#">Mapas <span class="arrow-side">▸</span></a>
                                 <ul class="second-submenu">
                                     <li><a href="#">Jardín Superior</a></li>
                                     <li><a href="#">El Estanque</a></li>
@@ -27,7 +30,7 @@
                                 </ul>
                             </li>
                         </ul>
-                    </div> 
+                    </div>  
 
                     <div class="dropdown">
                         <a href="#">Grounded ▾</a>
@@ -35,9 +38,13 @@
                             <li class="has-second-submenu">
                                 <a href="#">Supervivencia<span class="arrow-side">▸</span></a>
                                 <ul class="second-submenu">
+                                    <li><a href="#" data-seccion="herramientas">Armas/Herramientas</a></li>
                                     <li><a href="#" data-seccion="armadura">Armaduras</a></li>
-                                    <li><a href="#">Armas</a></li>
-                                    <li><a href="#" data-seccion="herramientas">Herramientas</a></li>
+                                    <li><a href="#" data-seccion="consumible">Consumibles</a></li>
+                                    <li><a href="#" data-seccion="criaturas">Criaturas</a></li>
+                                    <li><a href="#" data-seccion="recursos">Recursos</a></li>
+                                    <li><a href="#" data-seccion="construccion">Construccion</a></li>
+                                    <li><a href="#" data-seccion="datos">Datos</a></li>
                                 </ul>
                             </li>
                             <li><a href="#">Mejoras</a></li>
@@ -55,7 +62,7 @@
                 </form>
                 <div class="auth-buttons">
                     <button class="btn-login">Iniciar Sesión</button>
-                    <button class="btn-register">Registrarse</button>
+                    <button class="btn-register" data-seccion="registro">Registrarse</button>
                 </div>
             </div>
         </div>
@@ -64,11 +71,13 @@
     <div class="main-container">
         <div class="card">
             <div class="text-container">
+                <img src="./imagenes/GroundedLogo-removeFondo.png" alt="Grounded Logo" class="header-image">
                 <h1>¡Bienvenido a Grounded Wiki!</h1>
                 <p>Una wiki para la franquicia Grounded de Obsidian Entertainment. Encogido al tamaño de una hormiga, debes sobrevivir 
                     al hermoso pero peligroso micromundo. ¡Progresa a través de misiones basadas en historias, explora el mundo del juego 
                     intrincadamente detallado, busca recursos que salven vidas y defiéndete de una gran cantidad de criaturas impredecibles!
                 </p>
+                <div id="dinamic-content"></div>
             </div>
         </div>
     </div>
